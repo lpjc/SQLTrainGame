@@ -1,0 +1,26 @@
+WITH DEPARTURE AS (
+select
+city.city DepartureCity,
+time.time DepartureTime,
+train.TrainId,
+train.TrainName
+from city 
+join stop on stop.CityId = city.id
+join time on stop.TimeId = time.timeid
+join train on stop.TrainId = train.TrainId
+WHERE 
+city.id = 1 AND DepartureTime > '2:34'
+)
+
+
+SELECT 
+Departure.DepartureCity,
+Departure.DepartureTime,
+city.City ArrivalCity,
+time.time ArrivalTime,
+Departure.TrainName
+FROM city
+join stop on stop.CityId = city.id
+join time on time.TimeId = stop.TimeId
+JOIN Departure ON Departure.TrainId = stop.TrainId
+WHERE city.id = 4
